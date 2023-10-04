@@ -4,7 +4,7 @@ from fastapi.responses import RedirectResponse
 from src.constants import OK_MESSAGE, NO_FILE_RETREIVED_MESSAGE
 from pydantic_settings import BaseSettings
 from qdrant_client import QdrantClient
-from src.responses_models import CodeComparisonResponseModel
+from src.responses_models import ListCodeComparisonResponseModel
 
 
 class Settings(BaseSettings):
@@ -16,7 +16,6 @@ settings = Settings()
 qdrant_client = QdrantClient(
     settings.QDRANT_CLUSTER_HOST, port=settings.QDRANT_CLUSTER_PORT
 )
-
 
 app = FastAPI()
 pipe = pipeline("feature-extraction", model="microsoft/codebert-base")
@@ -31,7 +30,7 @@ async def main():
 @app.post("/v1/compareCodeFile", status_code=status.HTTP_202_ACCEPTED)
 async def compare_code_file(
     file: UploadFile, response: Response
-) -> CodeComparisonResponseModel:
+) -> ListCodeComparisonResponseModel:
     if not file:
         response.status_code = status.HTTP_422_UNPROCESSABLE_ENTITY
         return {"message": NO_FILE_RETREIVED_MESSAGE}
