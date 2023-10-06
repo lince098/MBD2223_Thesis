@@ -29,7 +29,7 @@ async def main():
 
 @app.post("/v1/compareCodeFile", status_code=status.HTTP_202_ACCEPTED)
 async def compare_code_file(
-    file: UploadFile, response: Response
+    file: UploadFile, limit: int, response: Response
 ) -> ListCodeComparisonResponseModel:
     if not file:
         response.status_code = status.HTTP_422_UNPROCESSABLE_ENTITY
@@ -39,7 +39,7 @@ async def compare_code_file(
 
     embbedding = pipe(content, padding=True, truncation=True)[0][0]
 
-    result = qdrant_client.search("code", embbedding, limit=5)
+    result = qdrant_client.search("code", embbedding, limit=limit)
 
     return {"message": result}
 
