@@ -9,7 +9,7 @@ MAXIMUM_RESULT_LIMIT = 10
 st.sidebar.markdown("# Code comparison")
 st.sidebar.markdown("Compare a file of code with the whole database .")
 
-st.markdown("# Sentiment Analysis")
+st.markdown("# Code comparison")
 
 
 uploaded_file = st.file_uploader("Insert a file of code here.")
