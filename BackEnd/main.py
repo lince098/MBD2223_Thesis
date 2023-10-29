@@ -5,6 +5,7 @@ from src.constants import OK_MESSAGE, NO_FILE_RETREIVED_MESSAGE
 from pydantic_settings import BaseSettings
 from qdrant_client import QdrantClient
 from src.responses_models import ListCodeComparisonResponseModel
+from src.utils import get_number_of_lines
 
 
 class Settings(BaseSettings):
@@ -39,7 +40,11 @@ async def compare_code_file(
 
     embbedding = pipe(content, padding=True, truncation=True)[0][0]
 
+    embbedding.append(get_number_of_lines(content))
+
     result = qdrant_client.search("code", embbedding, limit=limit)
+
+    print(result)
 
     return {"message": result}
 

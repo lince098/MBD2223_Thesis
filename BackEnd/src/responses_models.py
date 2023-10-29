@@ -2,6 +2,11 @@ from pydantic import BaseModel
 
 
 class CodePayload(BaseModel):
+    author: str
+    code_language: str
+    date: str
+    lines_of_code: int
+    subject: str
     text: str
 
 
