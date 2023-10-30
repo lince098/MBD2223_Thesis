@@ -32,6 +32,15 @@ if uploaded_file:
         response = search_code(uploaded_file, limit)
         st.markdown("## Code Similarities")
         for i, element in enumerate(response, 1):
+            payload = element["payload"]
             score = round(element["score"] * 100, 6)
-            st.markdown(f"### {i}: {score}%")
-            st.code(element["payload"]["text"])
+            st.markdown(
+                f"""### {i}: {score}%\n
+Author: {payload["author"]}\n
+Subject: {payload["subject"]}\n
+Programming Language: {payload["code_language"]}\n
+Date: {payload["date"]}\n
+Lines of code: {payload["lines_of_code"]}"""
+            )
+
+            st.code(payload["text"])

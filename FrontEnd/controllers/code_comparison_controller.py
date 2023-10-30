@@ -14,11 +14,11 @@ ENDPOINT = BACKEND_URL + "/v1/compareCodeFile"
 
 
 def search_code(code: UploadedFile, limit: int):
-    queried_endpoint = ENDPOINT + f"?limit={limit}"
+    queried_endpoint = ENDPOINT
     response = requests.post(
         queried_endpoint,
         files={"file": (code.name, code.read())},
-        data={"query": {"limit": limit}},
+        data={"limit": limit},
     )
 
     return response.json()["message"]
