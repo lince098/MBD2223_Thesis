@@ -8,6 +8,7 @@ class CodePayload(BaseModel):
     lines_of_code: int
     subject: str
     text: str
+    file_name: str
 
 
 class CodeComparisonResponseModel(BaseModel):

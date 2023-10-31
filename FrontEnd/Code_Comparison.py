@@ -35,12 +35,12 @@ if uploaded_file:
             payload = element["payload"]
             score = round(element["score"] * 100, 6)
             st.markdown(
-                f"""### {i}: {score}%\n
+                f"""### {i}. {payload["file_name"]} : {score}%\n
 Author: {payload["author"]}\n
 Subject: {payload["subject"]}\n
 Programming Language: {payload["code_language"]}\n
 Date: {payload["date"]}\n
-Lines of code: {payload["lines_of_code"]}"""
+Lines of code: {payload["lines_of_code"]-1}"""
             )
 
             st.code(payload["text"])
