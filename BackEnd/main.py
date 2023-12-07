@@ -44,8 +44,6 @@ async def compare_code_file(
 
     embbedding = pipe(content, padding=True, truncation=True)[0][0]
 
-    embbedding.append(get_number_of_lines(content))
-
     result = qdrant_client.search("code", embbedding, limit=limit)
 
     return {"message": result}
