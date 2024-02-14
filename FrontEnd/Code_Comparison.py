@@ -7,7 +7,7 @@ MAXIMUM_RESULT_LIMIT = 10
 
 
 st.sidebar.markdown("# Code comparison")
-st.sidebar.markdown("Compare a file of code with the whole database .")
+st.sidebar.markdown("Compare a file of code with the knowledge base of the database")
 
 st.markdown("# Code comparison")
 
