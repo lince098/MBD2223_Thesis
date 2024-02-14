@@ -10,7 +10,7 @@ services:
       - ./qdrant:/qdrant/storage
   
   backend:
-    image: tfm-backend:1.0
+    image: lince098/tfm-backend:1.0
     ports:
       - "8000:8000"
     environment:
@@ -20,7 +20,7 @@ services:
       - qdrant
 
   frontend:
-    image: tfm-frontend:1.0
+    image: lince098/tfm-frontend:1.0
     ports:
       - "8501:8501"
     environment:
